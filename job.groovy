@@ -2,6 +2,7 @@ def STUDENT_NAME = "kklimov"
 def GITHUB_REPOSITORY = "https://github.com/klmov/Jenkins_DSL.git"
 def GITHUB_BRANCH = "master"
 def Jobs = []
+def mainName = "MNTLAB-${STUDENT_NAME}-main-build-job"
 def script = """
 def branchApi = new URL("https://api.github.com/repos/MNT-Lab/mntlab-dsl/branches")
 def branches = new groovy.json.JsonSlurper().parse(branchApi)
@@ -20,14 +21,14 @@ for (int i = 1; i <5; i++) {
         git(GITHUB_REPOSITORY, GITHUB_BRANCH)
       }
       steps {
-        shell("bash ./script.sh > output.txt && tar -cvzf child${i}-\$BUILD_NUMBER.tar.gz output.txt")
+        shell("bash ./script.sh > output.txt && tar -cvzf child${i}-\$BUILD_NUMBER.tar.gz output.txt && cp child${i}-\$BUILD_NUMBER.tar.gz ../${mainName}")
       }
       publishers {
         archiveArtifacts("child${i}-\$BUILD_NUMBER.tar.gz")
       }
    }
 }
-job("MNTLAB-${STUDENT_NAME}-main-build-job") {
+job(mainName) {
     label("EPBYMINW2033")
     configure {
     project->
@@ -70,15 +71,8 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
                   }
               }
     }
-    copyArtifacts('\$BUILD_JOBS') {
-      includePatterns('*\$BUILD_NUMBER.tar.gz')
-      targetDirectory('files')
-      buildSelector {
-        latestSuccessful(true)
-            }
-    }
     publishers {
-      archiveArtifacts("*.tar.gz")
+      archiveArtifacts("*\$BUILD_NUMBER.tar.gz")
     }
   }
 }
