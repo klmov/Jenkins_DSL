@@ -67,6 +67,8 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
+            }
+  }
   step {
     copyArtifacts('\$BUILD_JOBS')
   }
