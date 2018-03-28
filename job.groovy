@@ -7,6 +7,7 @@ job('example') {
     parameters {
       extensibleChoiceParameterDefinition {
         name("JOBS")
+        sandbox(false)
         choiceListProvider{
           systemGroovyChoiceListProvider {
             groovyScript {
