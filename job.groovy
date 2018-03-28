@@ -5,13 +5,13 @@ def GITHUB_BRANCH = ""
 job('example') {
     label("EPBYMINW2033")
     parameters {
-      activeChoiceReactiveParam("JOBS") {
-        description('Allows user choose from multiple choices')
-        filterable()
-        choiceType('CHECKBOX')
-        groovyScript {
-          script('["job1", "job2"]')
-        }
+      extensibleChoiceParameterDefinition {
+        name("JOBS")
+        choiceListProvider{
+          systemGroovyChoiceListProvider {
+            groovyScript {
+              script('["job1", "job2"]')
+            }
       }
     }
 }
