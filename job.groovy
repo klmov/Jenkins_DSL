@@ -12,6 +12,7 @@ job('example') {
             groovyScript {
               script('["job1", "job2"]')
             }
+          }
       }
     }
 }
