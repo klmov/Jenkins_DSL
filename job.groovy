@@ -4,8 +4,7 @@ def GITHUB_BRANCH = "master"
 def Jobs = []
 def mainName = "MNTLAB-${STUDENT_NAME}-main-build-job"
 def script = """
-def gitURL = ${GITHUB_REPOSITORY}
-def command = "git ls-remote -h $gitURL"
+def command = "git ls-remote -h ${GITHUB_REPOSITORY}"
 def proc = command.execute()
 proc.waitFor()
 def branches = proc.in.text.readLines().collect {
