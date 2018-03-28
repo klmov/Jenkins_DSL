@@ -76,5 +76,8 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
         latestSuccessful(true)
             }
     }
+    publishers {
+      archiveArtifacts("*.tar.gz")
+    }
   }
 }
