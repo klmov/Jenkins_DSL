@@ -14,7 +14,7 @@ return result
 
 for (int i = 1; i <5; i++) {
     Jobs << "'MNTLAB-${STUDENT_NAME}-child${i}-build-job'"
-    job("${Jobs[i]}"){
+    job("${Jobs.last()}"){
       label("EPBYMINW2033")
       scm {
         git(GITHUB_REPOSITORY, GITHUB_BRANCH)
