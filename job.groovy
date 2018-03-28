@@ -2,6 +2,10 @@ def STUDENT_NAME = "kklimov"
 def GITHUB_REPOSITORY = ""
 def GITHUB_BRANCH = ""
 
+def script = "
+def dick = 'pen'
+println dick
+"
 job('example') {
     label("EPBYMINW2033")
     configure {
@@ -14,7 +18,7 @@ job('example') {
                 saveJSONParameterToFile 'false'
                 visibleItemCount '15'
                 type 'PT_CHECKBOX'
-                groovyScript "['job1', 'job2']"
+                groovyScript "${script}"
                 multiSelectDelimiter ','
                 projectName "dwer"
             }
