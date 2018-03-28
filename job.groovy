@@ -13,6 +13,7 @@ job('example') {
               script('["job1", "job2"]')
             }
           }
+        }
       }
     }
 }
