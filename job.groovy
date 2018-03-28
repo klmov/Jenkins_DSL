@@ -13,7 +13,7 @@ job('example') {
               script('["job1", "job2"]')
               sandbox(false)
             }
-            defaultChoice(String value)
+            defaultChoice("job1")
           }
         }
       }
