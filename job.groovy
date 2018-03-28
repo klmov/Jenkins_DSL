@@ -1,6 +1,6 @@
 def STUDENT_NAME = "kklimov"
-def GITHUB_REPOSITORY = ""
-def GITHUB_BRANCH = "kklimov"
+def GITHUB_REPOSITORY = "https://github.com/klmov/Jenkins_DSL.git"
+def GITHUB_BRANCH = "master"
 def Jobs = []
 def script = """
 def branchApi = new URL("https://api.github.com/repos/MNT-Lab/mntlab-dsl/branches")
@@ -12,8 +12,8 @@ branches.each {
 return result
 """
 
-for (int i = 0; i <3; i++) {
-    Jobs << "MNTLAB-${STUDENT_NAME}-child${i}-build-job"
+for (int i = 1; i <= 4; i++) {
+    Jobs << "'MNTLAB-${STUDENT_NAME}-child${i}-build-job'"
    job("${Jobs[i]}"){
      label("EPBYMINW2033")
      scm {
