@@ -23,7 +23,7 @@ for (int i = 1; i <5; i++) {
         shell("bash ./script.sh > output.txt && tar -cvzf child${1}-\$BUILD_NUMBER.tar.gz output.txt")
       }
       publishers {
-        archiveArtifacts("child${1}-\$BUILD_NUMBER.tar.gz")
+        archiveArtifacts("child${i}-\$BUILD_NUMBER.tar.gz")
       }
    }
 }
@@ -50,7 +50,7 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
                 saveJSONParameterToFile 'false'
                 visibleItemCount '15'
                 type 'PT_CHECKBOX'
-                groovyScript "${Jobs}"
+                groovyScript "${Jobs.each{return "${it}"}}"
                 multiSelectDelimiter ','
                 projectName "dwer"
             }
@@ -70,6 +70,11 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
                   }
               }
     }
-    copyArtifacts('\$BUILD_JOBS')
+    copyArtifacts('\$BUILD_JOBS') {
+      includePatterns('*.tar.gz')
+      buildSelector {
+                latestSuccessful(true)
+            }
+    }
   }
 }
