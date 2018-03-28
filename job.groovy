@@ -20,7 +20,7 @@ for (int i = 1; i <5; i++) {
         git(GITHUB_REPOSITORY, GITHUB_BRANCH)
       }
       steps {
-        shell("bash ./script.sh > output.txt && tar -cvzf child${1}-\$BUILD_NUMBER.tar.gz output.txt")
+        shell("bash ./script.sh > output.txt && tar -cvzf child${i}-\$BUILD_NUMBER.tar.gz output.txt")
       }
       publishers {
         archiveArtifacts("child${i}-\$BUILD_NUMBER.tar.gz")
@@ -73,7 +73,7 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
     copyArtifacts('\$BUILD_JOBS') {
       includePatterns('*.tar.gz')
       buildSelector {
-                latestSuccessful(true)
+        latestSuccessful(true)
             }
     }
   }
