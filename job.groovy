@@ -4,21 +4,21 @@ def GITHUB_BRANCH = ""
 
 job('example') {
     label("EPBYMINW2033")
-    parameters {
-      extensibleChoiceParameterDefinition {
-        name("JOBS")
-        editable(false)
-        description("Choose job") 
-        choiceListProvider{
-          systemGroovyChoiceListProvider {
-            groovyScript {
-              script('["job1", "job2"]')
-              sandbox(false)
+    configure {
+    project->
+        project / 'properties' << 'hudson.model.ParametersDefinitionProperty' {
+        parameterDefinitions {
+            'com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition' {
+                name 'BUILD_JOBS'
+                quoteValue 'false'
+                saveJSONParameterToFile 'false'
+                visibleItemCount '15'
+                type 'PT_CHECKBOX'
+                value "['job1', 'job2']"
+                multiSelectDelimiter ','
+                projectName "dwer"
             }
-            defaultChoice("job1")
-            usePredefinedVariables(true)
-          }
         }
-      }
     }
+}
 }
