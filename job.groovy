@@ -71,7 +71,8 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
               }
     }
     copyArtifacts('\$BUILD_JOBS') {
-      includePatterns('*.tar.gz')
+      includePatterns('*\$BUILD_NUMBER.tar.gz')
+      targetDirectory('files')
       buildSelector {
         latestSuccessful(true)
             }
