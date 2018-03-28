@@ -14,7 +14,7 @@ job('example') {
                 saveJSONParameterToFile 'false'
                 visibleItemCount '15'
                 type 'PT_CHECKBOX'
-                groovyscript "['job1', 'job2']"
+                groovyScript "['job1', 'job2']"
                 multiSelectDelimiter ','
                 projectName "dwer"
             }
