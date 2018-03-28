@@ -60,7 +60,7 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
   scm {
     git(GITHUB_REPOSITORY, "\$BRANCH")
   }
-  step {
+  steps {
     downstreamParameterized {
               trigger("\$BUILD_JOBS") {
                   block {
