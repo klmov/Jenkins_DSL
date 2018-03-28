@@ -17,6 +17,9 @@ for (int i = 1; i <5; i++) {
     Jobs << "MNTLAB-${STUDENT_NAME}-child${i}-build-job"
     job("${Jobs.last()}"){
       label("EPBYMINW2033")
+      wrappers {
+        preBuildCleanup()
+      }
       scm {
         git(GITHUB_REPOSITORY, GITHUB_BRANCH)
       }
@@ -30,6 +33,9 @@ for (int i = 1; i <5; i++) {
 }
 job(mainName) {
     label("EPBYMINW2033")
+    wrappers {
+        preBuildCleanup()
+    }
     configure {
     project->
         project / 'properties' << 'hudson.model.ParametersDefinitionProperty' {
@@ -72,7 +78,7 @@ job(mainName) {
               }
     }
     publishers {
-      archiveArtifacts("*\$BUILD_NUMBER.tar.gz")
+      archiveArtifacts("*.tar.gz")
     }
   }
 }
