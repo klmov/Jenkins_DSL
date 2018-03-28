@@ -12,7 +12,7 @@ branches.each {
 return result
 """
 
-for (int i = 1; i <= 4; i++) {
+for (int i = 1; i < 5; i++) {
     Jobs << "'MNTLAB-${STUDENT_NAME}-child${i}-build-job'"
    job("${Jobs[i]}"){
      label("EPBYMINW2033")
