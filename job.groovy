@@ -4,13 +4,14 @@ def GITHUB_BRANCH = "master"
 def Jobs = []
 def mainName = "MNTLAB-${STUDENT_NAME}-main-build-job"
 def script = """
-def branchApi = new URL("https://api.github.com/repos/MNT-Lab/mntlab-dsl/branches")
-def branches = new groovy.json.JsonSlurper().parse(branchApi)
-def result = []
-branches.each {
-  result << it.name
+def gitURL = ${GITHUB_REPOSITORY}
+def command = "git ls-remote -h $gitURL"
+def proc = command.execute()
+proc.waitFor()
+def branches = proc.in.text.readLines().collect {
+  it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
-return result
+return branches
 """
 
 for (int i = 1; i <5; i++) {
