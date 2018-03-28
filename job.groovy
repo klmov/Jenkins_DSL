@@ -14,6 +14,7 @@ job('example') {
               sandbox(false)
             }
             defaultChoice("job1")
+            usePredefinedVariables(true)
           }
         }
       }
