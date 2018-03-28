@@ -60,16 +60,16 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
   scm {
     git(GITHUB_REPOSITORY, "\$BRANCH")
   }
-  downstreamParameterized {
-            trigger("\$BUILD_JOBS") {
-                block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                }
-            }
-  }
   step {
+    downstreamParameterized {
+              trigger("\$BUILD_JOBS") {
+                  block {
+                      buildStepFailure('FAILURE')
+                      failure('FAILURE')
+                      unstable('UNSTABLE')
+                  }
+              }
+    }
     copyArtifacts('\$BUILD_JOBS')
   }
 }
