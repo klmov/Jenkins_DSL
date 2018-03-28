@@ -9,7 +9,7 @@ def command = "git ls-remote -h $gitURL"
 def proc = command.execute()
 proc.waitFor()
 def branches = proc.in.text.readLines().collect {
-  it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+  it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')
 }
 return branches
 """
@@ -47,7 +47,7 @@ job(mainName) {
                 saveJSONParameterToFile 'false'
                 visibleItemCount '15'
                 type 'PT_SINGLE_SELECT'
-                groovyScript "['master', 'kklimov']"
+                groovyScript script
                 defaultValue "'master'"
                 multiSelectDelimiter ','
                 projectName "dwer"
