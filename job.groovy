@@ -50,7 +50,7 @@ job("MNTLAB-${STUDENT_NAME}-main-build-job") {
                 saveJSONParameterToFile 'false'
                 visibleItemCount '15'
                 type 'PT_CHECKBOX'
-                groovyScript "${Jobs.each{return "${it}"}}"
+                groovyScript "${Jobs.each{return '"${it}"'}}"
                 multiSelectDelimiter ','
                 projectName "dwer"
             }
